@@ -37,6 +37,11 @@
           }}
         </p>
         <p class="movie-fact"><span>Overview:</span>{{ movie.overview }}</p>
+        <iframe
+          class="movie-video"
+          :src="`https://image.tmdb.org/t/p/w500/${movie.video}`"
+          frameborder="0"
+        />
       </div>
     </div>
   </div>
@@ -66,6 +71,7 @@ export default {
         `https://api.themoviedb.org/3/movie/${this.$route.params.movieid}?api_key=1ffe5453fccfb8abb96f4019a94cf663&language=en-US`
       )
       const result = await data
+      // console.log(result.data)
       this.movie = result.data
     },
   },
@@ -123,6 +129,16 @@ export default {
         span {
           font-style: normal;
         }
+      }
+      .movie-video {
+        overflow: hidden;
+        border-radius: 10px;
+        margin-top: 10px;
+        height: 430px;
+        width: 100%;
+      }
+      .movie-video::-webkit-scrollbar {
+        display: none;
       }
     }
   }
